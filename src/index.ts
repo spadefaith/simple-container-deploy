@@ -1,6 +1,6 @@
 import OpenApiMiddleware from "./middlewares/OpenApiMiddleware";
 import DeployModule from "./modules/deploy";
-
+const PORT = 9000;
 const express = require('express');
 const app = express();
 
@@ -17,8 +17,8 @@ app.use('/api/deploy',DeployModule);
 
 
 
-app.listen(8887,(err)=>{
-    console.log(err || `listening to port 8887`)
+app.listen(PORT,(err)=>{
+    console.log(err || `listening to port ${PORT}`)
 })
 
 app.use("*",(req,res,next)=>{
