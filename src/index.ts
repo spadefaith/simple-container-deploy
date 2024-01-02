@@ -1,8 +1,11 @@
+require('dotenv').config()
 import OpenApiMiddleware from "./middlewares/OpenApiMiddleware";
 import DeployModule from "./modules/deploy";
-const PORT = 9000;
+const PORT = process.env.PORT || 9000;
 const express = require('express');
 const app = express();
+
+
 
 app.use(express.json({ limit: "100mb" }));
 app.use(express.urlencoded({ extended: true }));

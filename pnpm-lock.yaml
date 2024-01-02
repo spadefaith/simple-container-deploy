@@ -11,6 +11,9 @@ dependencies:
   '@wesleytodd/openapi':
     specifier: ^0.3.0
     version: 0.3.0(core-js@3.35.0)(mobx@6.12.0)(openapi-types@12.1.3)(react-dom@18.2.0)(react@18.2.0)(styled-components@6.1.6)
+  dotenv:
+    specifier: ^16.3.1
+    version: 16.3.1
   express:
     specifier: ^4.18.2
     version: 4.18.2
@@ -588,6 +591,11 @@ packages:
 
   /dompurify@2.4.7:
     resolution: {integrity: sha512-kxxKlPEDa6Nc5WJi+qRgPbOAbgTpSULL+vI3NUXsZMlkJxTqYI9wg5ZTay2sFrdZRWHPWNi+EdAhcJf81WtoMQ==}
+    dev: false
+
+  /dotenv@16.3.1:
+    resolution: {integrity: sha512-IPzF4w4/Rd94bA9imS68tZBaYyBWSCE47V1RGuMrB94iyTOIEwRmVL2x/4An+6mETpLrKJ5hQkB8W4kFAadeIQ==}
+    engines: {node: '>=12'}
     dev: false
 
   /ee-first@1.1.1:
