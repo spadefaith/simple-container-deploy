@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "es2018",
+    "moduleResolution": "node",
+    "allowJs": true,
+    "checkJs": true,
+    "removeComments": true,
+    "outDir": "dist", // Compiled Output Directory
+    "rootDir": "",
+    "typeRoots": ["./node_modules/@types"],
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "resolvePackageJsonImports": false
+  },
+  "include": [
+    "src/**/*.js", // Every js file inside src folder
+    "src/**/*.ts", // Every ts file inside src folder
+    "server.js"
+  ],
+  "exclude": [
+    "node_modules",
+    ".serverless", // Exclude serverless directory
+    "dist" // Exclude compiled output by Typescript compiler
+  ]
+}
