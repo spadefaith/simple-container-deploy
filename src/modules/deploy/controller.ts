@@ -29,7 +29,7 @@ export const create = async (name,data:{
         fs.mkdirSync(root, { recursive: true });
 
 
-        if(shell.exec(`git clone --branch ${data.branch} ${data.repo} ${root}`).code != 0){
+        if(shell.exec(`git clone --branch=${data.branch} ${data.repo} ${root}`).code != 0){
             throw new Error('error in cloning repo');
         };
     
