@@ -60,6 +60,8 @@ DeployModule.post('/create/:name',
         })),
         async (req,res,next)=>{
             try {
+              console.log(63,req.params.name);
+              console.log(64,req.body);
                 const created = await create(req.params.name, req.body);
             
                 console.log(11,created);
