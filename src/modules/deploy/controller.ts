@@ -37,8 +37,10 @@ export const create = async (name,data:{
 
 
     const envs = await persistData(name, root, data);
-    
+    console.log(40,root);
+    console.log(41,envs);
     shell.cd(root);
+    shell.exec("pwd")
     const deploy = await shell.exec(`docker-compose down  && docker-compose up --build -d `,{
         cwd:root,
         env:envs
