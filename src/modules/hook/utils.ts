@@ -14,12 +14,15 @@ export const parseBitbucket = (json)=>{
       ]
     },
     actor:{
-      display_name:name
+      display_name:user
+    },
+    repository:{
+      name
     }
   } = json;
 
 
-  return {branch,message,name};
+  return {branch,message,name, user};
 }
 
 export const parseGithub = (json)=>{
