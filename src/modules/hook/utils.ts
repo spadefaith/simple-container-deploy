@@ -1,5 +1,5 @@
 export const parseBitbucket = (json)=>{
-  // console.log("parseBitbucket",JSON.stringify(json || {}, null, 4))
+  console.log("parseBitbucket",JSON.stringify(json || {}, null, 4))
   let {
     push:{
       changes:[
