@@ -7,6 +7,7 @@ import PermissionModule from "./modules/permission";
 import UserModule from "./modules/user";
 import CategoryModule from "./modules/category";
 import HookModule from "./modules/hook";
+import AppModule from "./modules/app";
 const PORT = process.env.PORT || 9000;
 const express = require('express');
 const app = express();
@@ -28,6 +29,7 @@ app.use('/api/role-permission',RolePermissionModule);
 app.use('/api/permission',PermissionModule);
 app.use('/api/user',UserModule);
 app.use('/api/category',CategoryModule);
+app.use('/api/app',AppModule);
 app.use('/api/client/hook',HookModule);
 
 

@@ -6,13 +6,13 @@ import ValidateMutationMiddleware from "../../middlewares/ValidateMutationMiddle
 import { AppModelSchema } from "../../schemas";
 const { convert } = require('joi-openapi');
 const express = require('express');
-const UserModule = express.Router();
+const AppModule = express.Router();
 
 
 const tags = ['user'];
 const moduleRefName = 'user';
 
-UserModule.post('/create',
+AppModule.post('/create',
     [
       ValidateMutationMiddleware.body(AppModelSchema({ filter: ['*', '-pk'] })),
       OpenApiService.path({
@@ -61,7 +61,7 @@ UserModule.post('/create',
 )
 
 
-UserModule.delete(
+AppModule.delete(
   '/delete',
   ValidateMutationMiddleware.body(
     AppModelSchema({
@@ -104,7 +104,7 @@ UserModule.delete(
     }
   }
 );
-UserModule.put(
+AppModule.put(
   '/update',
   ValidateMutationMiddleware.body(AppModelSchema()),
   OpenApiService.path({
@@ -145,7 +145,7 @@ UserModule.put(
   }
 );
 
-UserModule.get(
+AppModule.get(
   '/get/:id',
   ValidateMutationMiddleware.params(
     AppModelSchema({ filter: [['pk', 'id']] })
@@ -190,7 +190,7 @@ UserModule.get(
     }
   }
 );
-UserModule.get('/get', async (req, res, next) => {
+AppModule.get('/get', async (req, res, next) => {
   try {
     const many = await getMany();
 
@@ -201,4 +201,4 @@ UserModule.get('/get', async (req, res, next) => {
 });
 
 
-export default UserModule;
+export default AppModule;
