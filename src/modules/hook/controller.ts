@@ -29,6 +29,8 @@ export const receiveHook = async (params:{
         parse = parseJson(payload);
     };
 
+    console.log(32,parse);
+
     if(params.current_branch != parse.branch){
         throw new Error(`pass branch is not the same, ${params.current_branch} != ${parse.branch}`);
     }
