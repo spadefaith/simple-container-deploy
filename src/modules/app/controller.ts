@@ -52,13 +52,9 @@ export const getOne = (data) => {
     });
   };
   
-  export const getMany = (data) => {
-    const { payload, pk } = data;
+  export const getMany = () => {
     return Models.AppModel.findAll({
       raw: true,
-      where: {
-        [pk]: payload[pk],
-      },
     });
   };
   

@@ -1,4 +1,4 @@
-import { create, getOne, remove, update } from "./controller";
+import { create, getMany, getOne, remove, update } from "./controller";
 import OpenApiService from "../../services/OpenApiService";
 import ValidateMutationMiddleware from "../../middlewares/ValidateMutationMiddleware";
 
@@ -190,8 +190,14 @@ UserModule.get(
     }
   }
 );
-UserModule.get('/get', (req, res, next) => {
-  res.json({ status: 1 });
+UserModule.get('/get', async (req, res, next) => {
+  try {
+    const many = await getMany();
+
+    res.json({ status: 1, data: many });
+  } catch (err) {
+    next(err);
+  }
 });
 
 
