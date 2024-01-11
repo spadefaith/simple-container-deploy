@@ -35,7 +35,10 @@ export const create = async (name,data:{
         throw new Error('error in pulling repo');
     };
 
+
     const envs = await persistData(name, root, data);
+    
+    shell.cd(root);
     const deploy = await shell.exec(`docker-compose down  && docker-compose up --build -d `,{
         cwd:root,
         env:envs

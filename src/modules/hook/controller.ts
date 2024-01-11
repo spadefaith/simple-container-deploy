@@ -55,12 +55,17 @@ export const receiveHook = async (params:{
         shellOpts.env = restruct;
     }
 
-    const pull = shell.exec(`git pull origin ${parse.branch}`);
+    shell.cd(find.root_path);
+    const pull = shell.exec(`git pull origin ${parse.branch}`, {
+        ...shellOpts,
+        cwd:find.root_path
+    });
 
     if(pull.code != 0){
         throw new Error('error in pulling repo');
     };
 
+    shell.cd(find.compose_path);
     const deploy = shell.exec(`docker-compose down  && docker-compose up --build -d`, {
         ...shellOpts,
         cwd:find.compose_path,
