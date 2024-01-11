@@ -1,7 +1,7 @@
 {
-  "watch": ["src"],
-  "ignore": ["src/**/*.test.ts", "node_modules","src/apps/**/*"],
+  "watch": ["src","db/models"],
+  "ignore": ["src/**/*.test.ts", "node_modules","src/apps/**/*","src/interfaces/**/*"],
   "ext": "ts,mjs,js,json,graphql,sh,bash",
-  "exec": "pnpm start",
+  "exec": "pnpm ginterface && pnpm start",
   "legacyWatch": true
 }

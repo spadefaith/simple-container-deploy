@@ -1,9 +1,10 @@
 {
   "compilerOptions": {
     "module": "commonjs",
-    "target": "es2018",
+    "target": "ESNext",
     "moduleResolution": "node",
     "allowJs": true,
+    "strict": false,
     "checkJs": true,
     "removeComments": true,
     "outDir": "dist", // Compiled Output Directory
@@ -11,11 +12,14 @@
     "typeRoots": ["./node_modules/@types"],
     "esModuleInterop": true,
     "resolveJsonModule": true,
-    "resolvePackageJsonImports": false
+    "resolvePackageJsonImports": false,
+    "allowSyntheticDefaultImports": true
   },
   "include": [
     "src/**/*.js", // Every js file inside src folder
     "src/**/*.ts", // Every ts file inside src folder
+    "db/**/*.ts", // Every ts file inside src folder
+    "db/**/*.js", // Every ts file inside src folder
     "server.js"
   ],
   "exclude": [

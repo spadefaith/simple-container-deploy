@@ -1,11 +1,19 @@
 import OpenApiMiddleware from "../../middlewares/OpenApiMiddleware";
 import ValidateMiddleware from "../../middlewares/ValidateMiddleware";
 import { create } from "./controller";
+import OpenApiService from "../../services/OpenApiService";
+import ValidateMutationMiddleware from "../../middlewares/ValidateMutationMiddleware";
 
+import { generateSchema, parseEntity } from "../../utils";
+const { convert } = require('joi-openapi');
 const express = require('express');
 const DeployModule = express.Router();
 const joi = require('joi');
 const validate = require('express-joi-validate');
+
+
+const tags = ['apps'];
+const moduleRefName = 'bank';
 
 
 DeployModule.post('/create/:name',
@@ -57,6 +65,7 @@ DeployModule.post('/create/:name',
             env:joi.any(),
             branch:joi.string(),
             repo:joi.string(),
+            persist:joi.boolean(),
         })),
         async (req,res,next)=>{
             try {
@@ -68,6 +77,7 @@ DeployModule.post('/create/:name',
 
                 res.json({status:1,data:created})
             } catch(err){
+              console.log(err);
                 next(err);
             }
         }
