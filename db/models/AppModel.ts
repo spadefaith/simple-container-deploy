@@ -108,13 +108,6 @@ export default function AppModel (Sequelize, DataTypes) {
           ]
         },
         {
-          name: "apps_branch_key",
-          unique: true,
-          fields: [
-            { name: "branch" },
-          ]
-        },
-        {
           name: "apps_name_key",
           unique: true,
           fields: [
