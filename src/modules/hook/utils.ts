@@ -27,7 +27,7 @@ export const parseBitbucket = (json)=>{
 
 export const parseGithub = (json)=>{
   console.log("parseGithub",JSON.stringify(json || {}, null, 4))
-  let {ref, pusher:{name}, commits:[{message}]} = json;
+  let {ref, pusher:{name:username}, repository:{name}, commits:[{message}]} = json;
   let branch = ref.split('/')[2];
   return {branch,name,message};
 }
