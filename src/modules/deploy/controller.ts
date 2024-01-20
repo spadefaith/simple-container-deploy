@@ -30,6 +30,9 @@ export const create = async (name,data:{
     fs.rmSync(root, { recursive: true, force: true });
     fs.mkdirSync(root, { recursive: true });
 
+    shell.exec(`git stash`);
+    shell.exec(`git stash drop`);
+    
     const clone = shell.exec(`git clone --branch=${data.branch} ${data.repo} ${root} `);
     if(clone.code != 0){
         throw new Error('error in pulling repo');
