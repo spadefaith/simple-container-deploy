@@ -2,6 +2,7 @@ import OpenApiMiddleware from "../../middlewares/OpenApiMiddleware";
 import ValidateMiddleware from "../../middlewares/ValidateMiddleware";
 import { receiveHook } from "./controller";
 
+const store = {};
 
 const express = require('express');
 const HookModule = express.Router();
@@ -48,11 +49,27 @@ HookModule.post('/receive/:type/:repo/:current_branch',
         async (req,res,next)=>{
             try {
 
-                const received = await receiveHook(req.params, req.body, req.query);
-            
-                console.log(11,received);
+              /**
+               * trigger after 5mins
+               */
+              const time = 300000;
+              const name = `${req.params.tyoe}-${req.params.repo}-${req.params.current_branch}`;
+              if(store[name]){
+                clearInterval(store[name]);
+              }
+              store[name] = setInterval(()=>{
+                console.log(`start execute ${name}`);
+                receiveHook(req.params, req.body, req.query)
+                .then(res=>{
+                  console.log(11,res);
+                  console.log(`stop execute ${name}`);
+                }).catch(err=>{
+                  console.log(err)
+                  console.log(`failed execute ${name}`);
+                });
+              }, time);
 
-                res.json({status:1})
+              res.json({status:1})
             } catch(err){
                 next(err);
             }
