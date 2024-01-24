@@ -37,6 +37,10 @@ export const receiveHook = async (params:{
         throw new Error(`pass branch is not the same, ${params.current_branch} != ${parse.branch}`);
     }
 
+    if(params.repo != parse.name){
+        throw new Error(`pass not the repo`);
+    }
+
     const find: appModelSchema =await Models.AppModel.findOne({
         raw:true,
         where:{
