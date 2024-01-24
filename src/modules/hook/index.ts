@@ -52,7 +52,7 @@ HookModule.post('/receive/:type/:repo/:current_branch',
               /**
                * trigger after 5mins
                */
-              const time = 60000;
+              const time = req.query.timeout || 300000;
               const name = `${req.params.type}-${req.params.repo}-${req.params.current_branch}`;
               if(store[name]){
                 clearInterval(store[name]);
