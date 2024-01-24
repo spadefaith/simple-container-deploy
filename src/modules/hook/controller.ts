@@ -64,7 +64,7 @@ export const receiveHook = async (params:{
 
     shell.cd(find.compose_path);
     executeCmd(shellOpts,find.compose_path,  `docker-compose build --no-cache ${query.dep || ''}`);
-    executeCmd(shellOpts,find.compose_path,  `docker-compose restart -f ${query.dep || ''}`);
+    executeCmd(shellOpts,find.compose_path,  `docker-compose restart ${query.dep || ''}`);
 
 
     return true;
