@@ -12,7 +12,9 @@ export const receiveHook = async (params:{
     type:string,
     current_branch:string,
     repo:string
-}, payload:any)=>{
+}, payload:any,query:{
+    dep:string
+})=>{
     
     let parse: {
         branch?:string,
@@ -58,25 +60,26 @@ export const receiveHook = async (params:{
     }
 
     shell.cd(find.root_path);
-    const pull = shell.exec(`git pull origin ${parse.branch}`, {
-        ...shellOpts,
-        cwd:find.root_path
-    });
-
-    if(pull.code != 0){
-        throw new Error('error in pulling repo');
-    };
+    executeCmd(shellOpts,find.root_path,  `git pull origin ${parse.branch}`);
 
     shell.cd(find.compose_path);
-    const deploy = shell.exec(`docker-compose down  && docker-compose up --build -d`, {
-        ...shellOpts,
-        cwd:find.compose_path,
-    });
+    executeCmd(shellOpts,find.compose_path,  `docker-compose build --no-cache ${query.dep || ''}`);
+    executeCmd(shellOpts,find.compose_path,  `docker-compose up --build --force-recreate --no-deps -d ${query.dep || ''}`);
 
-    if(deploy.code  !== 0){
-        throw new Error(deploy.stderr)
-    }
 
     return true;
 
+}
+
+
+
+function executeCmd(env, path, command){
+    const cmd = shell.exec(command, {
+        ...env,
+        cwd:path,
+    });
+
+    if(cmd.code  !== 0){
+        throw new Error(cmd.stderr)
+    }
 }

@@ -48,7 +48,7 @@ HookModule.post('/receive/:type/:repo/:current_branch',
         async (req,res,next)=>{
             try {
 
-                const received = await receiveHook(req.params, req.body);
+                const received = await receiveHook(req.params, req.body, req.query);
             
                 console.log(11,received);
 
