@@ -64,7 +64,7 @@ export const receiveHook = async (params:{
 
     shell.cd(find.compose_path);
     executeCmd(shellOpts,find.compose_path,  `docker-compose down`);
-    executeCmd(shellOpts,find.compose_path,  `docker rmi $(docker images -qa -f 'dangling=true')`);
+    executeCmd(shellOpts,find.compose_path,  ` if [ ! $(docker images -qa -f 'dangling=true') ]; then echo "clean"; else docker rmi $(docker images -qa -f 'dangling=true');  fi`);
     executeCmd(shellOpts,find.compose_path,  `docker-compose build --no-cache ${query.dep || ''}`);
     executeCmd(shellOpts,find.compose_path,  `docker-compose up --build --force-recreate --no-deps -d ${query.dep || ''}`);
 
