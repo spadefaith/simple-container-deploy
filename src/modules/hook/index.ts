@@ -63,9 +63,11 @@ HookModule.post('/receive/:type/:repo/:current_branch',
                 .then(res=>{
                   console.log(11,res);
                   console.log(`stop execute ${name}`);
+                  clearInterval(store[name]);
                 }).catch(err=>{
                   console.log(err)
                   console.log(`failed execute ${name}`);
+                  clearInterval(store[name]);
                 });
               }, time);
 
