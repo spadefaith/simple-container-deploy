@@ -53,7 +53,7 @@ HookModule.post('/receive/:type/:repo/:current_branch',
                * trigger after 5mins
                */
               const time = 300000;
-              const name = `${req.params.tyoe}-${req.params.repo}-${req.params.current_branch}`;
+              const name = `${req.params.type}-${req.params.repo}-${req.params.current_branch}`;
               if(store[name]){
                 clearInterval(store[name]);
               }
@@ -68,6 +68,8 @@ HookModule.post('/receive/:type/:repo/:current_branch',
                   console.log(`failed execute ${name}`);
                 });
               }, time);
+
+              console.log(store[name]);
 
               res.json({status:1})
             } catch(err){
