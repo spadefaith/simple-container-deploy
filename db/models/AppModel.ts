@@ -102,14 +102,14 @@ export default function AppModel (Sequelize, DataTypes) {
         },
         {
           name: "apps_repo_key",
-          unique: true,
+          unique: false,
           fields: [
             { name: "repo" },
           ]
         },
         {
           name: "apps_name_key",
-          unique: true,
+          unique: false,
           fields: [
             { name: "name" },
           ]
