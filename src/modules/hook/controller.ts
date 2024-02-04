@@ -70,8 +70,10 @@ export const receiveHook = async (params:{
     executeCmd(shellOpts,find.compose_path,  `docker-compose down`);
     executeCmd(shellOpts,find.compose_path,  `docker-compose build --no-cache ${query.dep || ''}`);
     executeCmd(shellOpts,find.compose_path,  `docker-compose up --build --force-recreate --no-deps -d ${query.dep || ''}`);
-    executeCmd(shellOpts,find.compose_path,  ` if [ ! $(docker images -qa -f 'dangling=true') ]; then echo "clean"; else docker rmi $(docker images -qa -f 'dangling=true');  fi`);
-
+    // executeCmd(shellOpts,find.compose_path,  ` if [ ! $(docker images -qa -f 'dangling=true') ]; then echo "clean"; else docker rmi $(docker images -qa -f 'dangling=true');  fi`);
+    // executeCmd(shellOpts,find.compose_path,  ` if [ ! $(docker ps -a -f status=exited -f status=created -q) ]; then echo "clean"; else docker rm -v $(docker ps -a -f status=exited -f status=created -q);  fi`);
+    executeCmd(shellOpts,find.compose_path,  "docker system prune -a -f");
+    
 
     return true;
 
