@@ -63,6 +63,8 @@ export const receiveHook = async (params:{
         shellOpts.env = restruct;
     }
 
+    console.log(66,shellOpts);
+
     shell.cd(find.root_path);
     executeCmd(shellOpts,find.root_path,  `git pull origin ${parse.branch}`);
 
