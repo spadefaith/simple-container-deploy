@@ -87,6 +87,22 @@ async function persistData(name, root, data){
             }
 
             app = await Models.AppModel.create(rec);
+        } else {
+            const rec : appModelSchema= {
+                branch:data.branch,
+                name,
+                compose_path:root,
+                root_path:root,
+                repo:data.repo,
+                webhook_url:`${config.HOOK_BASE_URL}/${provider}/${name}/${data.branch}`
+            }
+
+            await Models.AppModel.update(rec, {
+                where:{
+                    branch:data.branch,
+                    name:name,
+                }
+            });
         }
 
         if(data.env){
