@@ -45,7 +45,7 @@ export const create = async (name,data:{
     shell.cd(root);
     shell.exec("pwd")
     shell.exec("ls -alt")
-    const deploy = await shell.exec(`docker-compose down  && docker-compose up --build -d `,{
+    const deploy = await shell.exec(`docker compose down  && docker compose up --build -d `,{
         cwd:root,
         env:envs
     });
