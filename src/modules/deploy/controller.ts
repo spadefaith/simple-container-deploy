@@ -32,9 +32,9 @@ export const create = async (name,data:{
 
     shell.exec(`git stash`);
     shell.exec(`git stash drop`);
-    
     const clone = shell.exec(`git clone --branch=${data.branch} ${data.repo} ${root} `);
     if(clone.code != 0){
+        console.log(`git clone --branch=${data.branch} ${data.repo} ${root} `);
         throw new Error('error in pulling repo');
     };
 
