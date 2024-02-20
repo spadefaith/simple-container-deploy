@@ -34,6 +34,7 @@ export const create = async (name,data:{
     shell.exec(`git stash drop`);
     const clone = shell.exec(`git clone --branch=${data.branch} ${data.repo} ${root} `);
     if(clone.code != 0){
+        shell.exec("ssh -T git@github.com");
         console.log(`git clone --branch=${data.branch} ${data.repo} ${root} `);
 
         throw new Error(clone.stderr);
