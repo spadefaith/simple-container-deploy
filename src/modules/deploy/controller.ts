@@ -35,8 +35,8 @@ export const create = async (name,data:{
     const clone = shell.exec(`git clone --branch=${data.branch} ${data.repo} ${root} `);
     if(clone.code != 0){
         console.log(`git clone --branch=${data.branch} ${data.repo} ${root} `);
-        console.log(38,clone);
-        throw new Error('error in pulling repo');
+
+        throw new Error(clone.stderr);
     };
 
 
