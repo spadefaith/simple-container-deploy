@@ -75,7 +75,7 @@ async function persistData(name, root, data){
 
 
     if(data.persist){
-        const provider = getProvider(data.repo);
+        const provider = getProvider(data.repo) || data.provider;
 
         if(!app){
             const rec : appModelSchema= {
