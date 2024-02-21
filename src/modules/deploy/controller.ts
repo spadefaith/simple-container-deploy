@@ -100,6 +100,8 @@ async function persistData(name, root, data){
                 webhook_url:`${config.HOOK_BASE_URL}/${provider}/${name}/${data.branch}`
             }
 
+            console.log(103,rec);
+
             await Models.AppModel.update(rec, {
                 where:{
                     branch:data.branch,
