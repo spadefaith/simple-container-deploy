@@ -55,6 +55,8 @@ export const create = async (name,data:{
         throw new Error(deploy.stderr)
     }
 
+    await shell.exec( "docker system prune -f");
+
     return true;
 
 }
