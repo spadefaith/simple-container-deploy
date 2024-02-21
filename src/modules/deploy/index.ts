@@ -51,7 +51,8 @@ DeployModule.post('/create/:name',
                                 }
                             },
                             branch: {type : 'string'},
-                            repo: {type : 'string'}
+                            repo: {type : 'string'},
+                            persist: {type : 'boolean'},
                         }
                       }
                   }
@@ -66,6 +67,7 @@ DeployModule.post('/create/:name',
             branch:joi.string(),
             repo:joi.string(),
             persist:joi.boolean(),
+            provider:joi.string().optional(),
         })),
         async (req,res,next)=>{
             try {
