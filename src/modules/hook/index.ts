@@ -118,7 +118,7 @@ function recurse() {
   } = queue[0] || {};
   queue = queue.slice(1, queue.length);
 
-  console.log(111, `current cron id ${id}`, conf);
+  // console.log(111, `current cron id ${id}`, conf);
 
   if (conf.params && conf.payload && conf.query && conf.parse && conf.name) {
     /**
