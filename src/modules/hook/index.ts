@@ -75,15 +75,19 @@ HookModule.post("/receive/:type/:repo/:current_branch", [
         parse = parseJson(payload);
       }
 
+      if (!parse) {
+        parse = {};
+      }
+
       console.log(32, parse);
 
-      if (params.current_branch != parse.branch) {
+      if (params.current_branch != parse?.branch) {
         throw new Error(
-          `pass branch is not the same, ${params.current_branch} != ${parse.branch}`
+          `pass branch is not the same, ${params.current_branch} != ${parse?.branch}`
         );
       }
 
-      if (params.repo != parse.name) {
+      if (params.repo != parse?.name) {
         throw new Error(`pass not the repo`);
       }
 
@@ -99,6 +103,7 @@ HookModule.post("/receive/:type/:repo/:current_branch", [
 let id: any = "";
 function interval() {
   id = setInterval(() => recurse(), 10000);
+  console.log(`run the cron ${id}`);
 }
 interval();
 
@@ -112,12 +117,13 @@ function recurse() {
   } = queue[0] || {};
   queue.shift();
 
-  console.log(111, conf);
+  console.log(111, `current cron id ${id}`, conf);
 
   if (conf.params && conf.body && conf.query && conf.parse) {
     /**
      * stop the cron
      */
+    console.log(`cron id ${id} has stopped`);
     clearInterval(id);
 
     receiveHook(conf.params, conf.body, conf.query, conf.parse)
