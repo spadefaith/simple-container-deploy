@@ -95,6 +95,7 @@ HookModule.post("/receive/:type/:repo/:current_branch", [
 
       res.json({ status: 1 });
     } catch (err) {
+      console.log(err.message);
       next(err);
     }
   },
