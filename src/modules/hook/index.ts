@@ -110,7 +110,7 @@ interval();
 function recurse() {
   const conf: {
     params: any;
-    body: any;
+    payload: any;
     query: any;
     parse: any;
     name: string;
@@ -119,14 +119,14 @@ function recurse() {
 
   console.log(111, `current cron id ${id}`, conf);
 
-  if (conf.params && conf.body && conf.query && conf.parse) {
+  if (conf.params && conf.payload && conf.query && conf.parse && conf.name) {
     /**
      * stop the cron
      */
     console.log(`cron id ${id} has stopped`);
     clearInterval(id);
 
-    receiveHook(conf.params, conf.body, conf.query, conf.parse)
+    receiveHook(conf.params, conf.payload, conf.query, conf.parse)
       .then((res) => {
         console.log(11, res);
         console.log(`stop execute ${conf.name}`);
