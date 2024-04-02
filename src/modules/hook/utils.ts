@@ -17,6 +17,8 @@ export const parseBitbucket = (json) => {
     const changes = (d?.push?.changes || [])[0];
     console.log(17, d.push);
     console.log(18, changes);
+    console.log(19, changes?.new);
+    console.log(20, changes?.new?.name);
     if (changes) {
       branch = changes?.new?.name;
       message = changes?.new?.target?.message;
