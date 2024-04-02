@@ -15,6 +15,8 @@ export const parseBitbucket = (json) => {
   } else if (json.push) {
     const d = json as BitbucketPushPayloadType;
     const changes = (d?.push?.changes || [])[0];
+    console.log(17, d.push);
+    console.log(18, changes);
     if (changes) {
       branch = changes?.new?.name;
       message = changes?.new?.target?.message;
