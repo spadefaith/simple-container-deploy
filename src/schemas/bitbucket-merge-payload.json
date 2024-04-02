@@ -1,0 +1,307 @@
+{
+  "repository": {
+    "type": "repository",
+    "full_name": "seedbox-web-app/seedbox-lite-web-app",
+    "links": {
+      "self": {
+        "href": "https://api.bitbucket.org/2.0/repositories/seedbox-web-app/seedbox-lite-web-app"
+      },
+      "html": {
+        "href": "https://bitbucket.org/seedbox-web-app/seedbox-lite-web-app"
+      },
+      "avatar": {
+        "href": "https://bytebucket.org/ravatar/%7B3aec59fa-2a55-4822-ab04-8134eeade419%7D?ts=default"
+      }
+    },
+    "name": "seedbox-lite-web-app",
+    "scm": "git",
+    "website": null,
+    "owner": {
+      "display_name": "Seedbox Web App",
+      "links": {
+        "self": {
+          "href": "https://api.bitbucket.org/2.0/workspaces/%7Bab9b91d0-d84f-4533-a4f4-187f8b35a5aa%7D"
+        },
+        "avatar": {
+          "href": "https://bitbucket.org/account/seedbox-web-app/avatar/"
+        },
+        "html": {
+          "href": "https://bitbucket.org/%7Bab9b91d0-d84f-4533-a4f4-187f8b35a5aa%7D/"
+        }
+      },
+      "type": "team",
+      "uuid": "{ab9b91d0-d84f-4533-a4f4-187f8b35a5aa}",
+      "username": "seedbox-web-app"
+    },
+    "workspace": {
+      "type": "workspace",
+      "uuid": "{ab9b91d0-d84f-4533-a4f4-187f8b35a5aa}",
+      "name": "Seedbox Web App",
+      "slug": "seedbox-web-app",
+      "links": {
+        "avatar": {
+          "href": "https://bitbucket.org/workspaces/seedbox-web-app/avatar/?ts=1706154736"
+        },
+        "html": {
+          "href": "https://bitbucket.org/seedbox-web-app/"
+        },
+        "self": {
+          "href": "https://api.bitbucket.org/2.0/workspaces/seedbox-web-app"
+        }
+      }
+    },
+    "is_private": true,
+    "project": {
+      "type": "project",
+      "key": "SBLIT",
+      "uuid": "{87ea7f58-538f-4ecf-9e3e-dc736272fdf9}",
+      "name": "SB-Lite",
+      "links": {
+        "self": {
+          "href": "https://api.bitbucket.org/2.0/workspaces/seedbox-web-app/projects/SBLIT"
+        },
+        "html": {
+          "href": "https://bitbucket.org/seedbox-web-app/workspace/projects/SBLIT"
+        },
+        "avatar": {
+          "href": "https://bitbucket.org/account/user/seedbox-web-app/projects/SBLIT/avatar/32?ts=1615427766"
+        }
+      }
+    },
+    "uuid": "{3aec59fa-2a55-4822-ab04-8134eeade419}",
+    "parent": null
+  },
+  "actor": {
+    "display_name": "Cedrick F. Campoto",
+    "links": {
+      "self": {
+        "href": "https://api.bitbucket.org/2.0/users/%7B0e15d16a-c6e6-44c9-91e9-7d5b497a82f9%7D"
+      },
+      "avatar": {
+        "href": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/6296f39eb407cc0069ffad11/00861372-62d0-4279-b5c5-c9ba1a2ab889/128"
+      },
+      "html": {
+        "href": "https://bitbucket.org/%7B0e15d16a-c6e6-44c9-91e9-7d5b497a82f9%7D/"
+      }
+    },
+    "type": "user",
+    "uuid": "{0e15d16a-c6e6-44c9-91e9-7d5b497a82f9}",
+    "account_id": "6296f39eb407cc0069ffad11",
+    "nickname": "Cedrick F. Campoto"
+  },
+  "pullrequest": {
+    "comment_count": 0,
+    "task_count": 0,
+    "type": "pullrequest",
+    "id": 175,
+    "title": "update redirect url",
+    "description": "",
+    "rendered": {
+      "title": {
+        "type": "rendered",
+        "raw": "update redirect url",
+        "markup": "markdown",
+        "html": "<p>update redirect url</p>"
+      },
+      "description": {
+        "type": "rendered",
+        "raw": "",
+        "markup": "markdown",
+        "html": ""
+      }
+    },
+    "state": "MERGED",
+    "merge_commit": {
+      "hash": "6ce316b79628",
+      "links": {
+        "self": {
+          "href": "https://api.bitbucket.org/2.0/repositories/seedbox-web-app/seedbox-lite-web-app/commit/6ce316b79628"
+        },
+        "html": {
+          "href": "https://bitbucket.org/seedbox-web-app/seedbox-lite-web-app/commits/6ce316b79628"
+        }
+      },
+      "type": "commit"
+    },
+    "close_source_branch": false,
+    "closed_by": {
+      "display_name": "Cedrick F. Campoto",
+      "links": {
+        "self": {
+          "href": "https://api.bitbucket.org/2.0/users/%7B0e15d16a-c6e6-44c9-91e9-7d5b497a82f9%7D"
+        },
+        "avatar": {
+          "href": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/6296f39eb407cc0069ffad11/00861372-62d0-4279-b5c5-c9ba1a2ab889/128"
+        },
+        "html": {
+          "href": "https://bitbucket.org/%7B0e15d16a-c6e6-44c9-91e9-7d5b497a82f9%7D/"
+        }
+      },
+      "type": "user",
+      "uuid": "{0e15d16a-c6e6-44c9-91e9-7d5b497a82f9}",
+      "account_id": "6296f39eb407cc0069ffad11",
+      "nickname": "Cedrick F. Campoto"
+    },
+    "author": {
+      "display_name": "Cedrick F. Campoto",
+      "links": {
+        "self": {
+          "href": "https://api.bitbucket.org/2.0/users/%7B0e15d16a-c6e6-44c9-91e9-7d5b497a82f9%7D"
+        },
+        "avatar": {
+          "href": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/6296f39eb407cc0069ffad11/00861372-62d0-4279-b5c5-c9ba1a2ab889/128"
+        },
+        "html": {
+          "href": "https://bitbucket.org/%7B0e15d16a-c6e6-44c9-91e9-7d5b497a82f9%7D/"
+        }
+      },
+      "type": "user",
+      "uuid": "{0e15d16a-c6e6-44c9-91e9-7d5b497a82f9}",
+      "account_id": "6296f39eb407cc0069ffad11",
+      "nickname": "Cedrick F. Campoto"
+    },
+    "reason": "",
+    "created_on": "2024-04-02T05:45:05.027162+00:00",
+    "updated_on": "2024-04-02T05:45:17.941095+00:00",
+    "destination": {
+      "branch": {
+        "name": "develop"
+      },
+      "commit": {
+        "hash": "5d7b8c8b342b",
+        "links": {
+          "self": {
+            "href": "https://api.bitbucket.org/2.0/repositories/seedbox-web-app/seedbox-lite-web-app/commit/5d7b8c8b342b"
+          },
+          "html": {
+            "href": "https://bitbucket.org/seedbox-web-app/seedbox-lite-web-app/commits/5d7b8c8b342b"
+          }
+        },
+        "type": "commit"
+      },
+      "repository": {
+        "type": "repository",
+        "full_name": "seedbox-web-app/seedbox-lite-web-app",
+        "links": {
+          "self": {
+            "href": "https://api.bitbucket.org/2.0/repositories/seedbox-web-app/seedbox-lite-web-app"
+          },
+          "html": {
+            "href": "https://bitbucket.org/seedbox-web-app/seedbox-lite-web-app"
+          },
+          "avatar": {
+            "href": "https://bytebucket.org/ravatar/%7B3aec59fa-2a55-4822-ab04-8134eeade419%7D?ts=default"
+          }
+        },
+        "name": "seedbox-lite-web-app",
+        "uuid": "{3aec59fa-2a55-4822-ab04-8134eeade419}"
+      }
+    },
+    "source": {
+      "branch": {
+        "name": "revamp"
+      },
+      "commit": {
+        "hash": "9a37e396c6f4",
+        "links": {
+          "self": {
+            "href": "https://api.bitbucket.org/2.0/repositories/seedbox-web-app/seedbox-lite-web-app/commit/9a37e396c6f4"
+          },
+          "html": {
+            "href": "https://bitbucket.org/seedbox-web-app/seedbox-lite-web-app/commits/9a37e396c6f4"
+          }
+        },
+        "type": "commit"
+      },
+      "repository": {
+        "type": "repository",
+        "full_name": "seedbox-web-app/seedbox-lite-web-app",
+        "links": {
+          "self": {
+            "href": "https://api.bitbucket.org/2.0/repositories/seedbox-web-app/seedbox-lite-web-app"
+          },
+          "html": {
+            "href": "https://bitbucket.org/seedbox-web-app/seedbox-lite-web-app"
+          },
+          "avatar": {
+            "href": "https://bytebucket.org/ravatar/%7B3aec59fa-2a55-4822-ab04-8134eeade419%7D?ts=default"
+          }
+        },
+        "name": "seedbox-lite-web-app",
+        "uuid": "{3aec59fa-2a55-4822-ab04-8134eeade419}"
+      }
+    },
+    "reviewers": [],
+    "participants": [
+      {
+        "type": "participant",
+        "user": {
+          "display_name": "Cedrick F. Campoto",
+          "links": {
+            "self": {
+              "href": "https://api.bitbucket.org/2.0/users/%7B0e15d16a-c6e6-44c9-91e9-7d5b497a82f9%7D"
+            },
+            "avatar": {
+              "href": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/6296f39eb407cc0069ffad11/00861372-62d0-4279-b5c5-c9ba1a2ab889/128"
+            },
+            "html": {
+              "href": "https://bitbucket.org/%7B0e15d16a-c6e6-44c9-91e9-7d5b497a82f9%7D/"
+            }
+          },
+          "type": "user",
+          "uuid": "{0e15d16a-c6e6-44c9-91e9-7d5b497a82f9}",
+          "account_id": "6296f39eb407cc0069ffad11",
+          "nickname": "Cedrick F. Campoto"
+        },
+        "role": "PARTICIPANT",
+        "approved": true,
+        "state": "approved",
+        "participated_on": "2024-04-02T05:45:09.127729+00:00"
+      }
+    ],
+    "links": {
+      "self": {
+        "href": "https://api.bitbucket.org/2.0/repositories/seedbox-web-app/seedbox-lite-web-app/pullrequests/175"
+      },
+      "html": {
+        "href": "https://bitbucket.org/seedbox-web-app/seedbox-lite-web-app/pull-requests/175"
+      },
+      "commits": {
+        "href": "https://api.bitbucket.org/2.0/repositories/seedbox-web-app/seedbox-lite-web-app/pullrequests/175/commits"
+      },
+      "approve": {
+        "href": "https://api.bitbucket.org/2.0/repositories/seedbox-web-app/seedbox-lite-web-app/pullrequests/175/approve"
+      },
+      "request-changes": {
+        "href": "https://api.bitbucket.org/2.0/repositories/seedbox-web-app/seedbox-lite-web-app/pullrequests/175/request-changes"
+      },
+      "diff": {
+        "href": "https://api.bitbucket.org/2.0/repositories/seedbox-web-app/seedbox-lite-web-app/diff/seedbox-web-app/seedbox-lite-web-app:9a37e396c6f4%0D5d7b8c8b342b?from_pullrequest_id=175&topic=true"
+      },
+      "diffstat": {
+        "href": "https://api.bitbucket.org/2.0/repositories/seedbox-web-app/seedbox-lite-web-app/diffstat/seedbox-web-app/seedbox-lite-web-app:9a37e396c6f4%0D5d7b8c8b342b?from_pullrequest_id=175&topic=true"
+      },
+      "comments": {
+        "href": "https://api.bitbucket.org/2.0/repositories/seedbox-web-app/seedbox-lite-web-app/pullrequests/175/comments"
+      },
+      "activity": {
+        "href": "https://api.bitbucket.org/2.0/repositories/seedbox-web-app/seedbox-lite-web-app/pullrequests/175/activity"
+      },
+      "merge": {
+        "href": "https://api.bitbucket.org/2.0/repositories/seedbox-web-app/seedbox-lite-web-app/pullrequests/175/merge"
+      },
+      "decline": {
+        "href": "https://api.bitbucket.org/2.0/repositories/seedbox-web-app/seedbox-lite-web-app/pullrequests/175/decline"
+      },
+      "statuses": {
+        "href": "https://api.bitbucket.org/2.0/repositories/seedbox-web-app/seedbox-lite-web-app/pullrequests/175/statuses"
+      }
+    },
+    "summary": {
+      "type": "rendered",
+      "raw": "",
+      "markup": "markdown",
+      "html": ""
+    }
+  }
+}
