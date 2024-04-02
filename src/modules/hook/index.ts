@@ -4,7 +4,7 @@ import { receiveHook } from "./controller";
 import { parseBitbucket, parseGithub, parseGitlab, parseJson } from "./utils";
 
 const store = {};
-const queue = [];
+let queue = [];
 
 const express = require("express");
 const HookModule = express.Router();
@@ -116,7 +116,7 @@ function recurse() {
     parse: any;
     name: string;
   } = queue[0] || {};
-  queue.shift();
+  queue = queue.slice(1, queue.length);
 
   console.log(111, `current cron id ${id}`, conf);
 
