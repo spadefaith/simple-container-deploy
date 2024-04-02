@@ -8,17 +8,14 @@ export const parseBitbucket = (json) => {
   if (json.pullrequest) {
     const d = json as BitbucketMergePayloadType;
 
-    branch = d?.pullrequest?.destination?.branch;
+    branch = d?.pullrequest?.destination?.branch?.name;
     message = `merge to ${branch}`;
     name = d?.repository?.name;
     user = d?.actor?.display_name;
   } else if (json.push) {
     const d = json as BitbucketPushPayloadType;
     const changes = (d?.push?.changes || [])[0];
-    console.log(17, d.push);
-    console.log(18, changes);
-    console.log(19, changes?.new);
-    console.log(20, changes?.new?.name);
+
     if (changes) {
       branch = changes?.new?.name;
       message = changes?.new?.target?.message;
