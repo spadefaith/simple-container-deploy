@@ -1,0 +1,10 @@
+{
+  "apps": [
+    {
+      "name": "deploy",
+      "script": "npm",
+      "args": "start",
+      "exec_mode": "cluster"
+    }
+  ]
+}
