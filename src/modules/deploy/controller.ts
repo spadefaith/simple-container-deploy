@@ -137,17 +137,21 @@ async function persistData(name, root, data) {
         });
 
         if (find) {
-          return await Models.EnvModel.update(
-            {
-              prop_value: item.prop_value,
-            },
-            {
-              where: {
-                prop_key: item.prop_key,
-                app_id: item.app_id,
+          if (find.prop_value == item.prop_value) {
+            return Promise.resolve({});
+          } else {
+            return await Models.EnvModel.update(
+              {
+                prop_value: item.prop_value,
               },
-            }
-          );
+              {
+                where: {
+                  prop_key: item.prop_key,
+                  app_id: item.app_id,
+                },
+              }
+            );
+          }
         }
 
         return await Models.EnvModel.create(item);
