@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "ts-node src/index.ts",
-    "ginterface": "ts-node generate-interface.ts"
+    "ginterface": "ts-node generate-interface.ts",
+    "migrate": "ts-node migrate.ts"
   },
   "keywords": [],
   "author": "",
