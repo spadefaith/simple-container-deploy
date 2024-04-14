@@ -54,6 +54,7 @@ export const receiveHook = async (
   console.log(66, shellOpts);
 
   shell.cd(find.root_path);
+  executeCmd(shellOpts, find.root_path, `git stash`);
   executeCmd(shellOpts, find.root_path, `git pull origin ${parse.branch}`);
 
   shell.cd(find.compose_path);
@@ -68,6 +69,7 @@ export const receiveHook = async (
     find.compose_path,
     `docker compose up --build --force-recreate --no-deps -d ${query.dep || ""}`
   );
+  executeCmd(shellOpts, find.root_path, `git stash drop`);
   // executeCmd(shellOpts,find.compose_path,  ` if [ ! $(docker images -qa -f 'dangling=true') ]; then echo "clean"; else docker rmi $(docker images -qa -f 'dangling=true');  fi`);
   // executeCmd(shellOpts,find.compose_path,  ` if [ ! $(docker ps -a -f  status=created -q) ]; then echo "clean"; else docker rm -v $(docker ps -a -f status=exited -f status=created -q);  fi`);
   executeCmd(shellOpts, find.compose_path, "docker system prune -f");
