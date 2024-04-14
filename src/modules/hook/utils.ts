@@ -1,5 +1,5 @@
-import { BitbucketMergePayloadType } from "../../schemas/bitbucket-merge-payload";
-import { BitbucketPushPayloadType } from "../../schemas/bitbucket-push-payload";
+import { BitbucketMergePayloadType } from "../../types/bitbucket-merge-payload";
+import { BitbucketPushPayloadType } from "../../types/bitbucket-push-payload";
 
 export const parseBitbucket = (json) => {
   console.log("parseBitbucket", JSON.stringify(json, null, 4));
