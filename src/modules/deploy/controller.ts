@@ -130,11 +130,6 @@ async function persistData(name, root, data) {
             app_id: item.app_id,
           },
         });
-        console.log(133, find);
-        console.log(134, {
-          prop_key: item.prop_key,
-          app_id: item.app_id,
-        });
 
         if (find) {
           if (find.prop_value == item.prop_value) {
