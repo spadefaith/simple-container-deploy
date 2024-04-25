@@ -143,7 +143,12 @@ async function persistData(name, root, data) {
           if (find.prop_value == item.prop_value) {
             return Promise.resolve({});
           } else {
-            return await Models.EnvModel.update(
+            // await Models.EnvModel.destroy({
+            //   prop_key: item.prop_key,
+            //   app_id: item.app_id,
+            // });
+            console.log(137, item);
+            return await Models.EnvModel.create(
               {
                 prop_value: item.prop_value,
               },
