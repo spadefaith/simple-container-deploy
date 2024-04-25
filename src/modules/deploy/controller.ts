@@ -131,6 +131,8 @@ async function persistData(name, root, data) {
           },
         });
 
+        console.log(136, find);
+
         if (find) {
           if (find.prop_value == item.prop_value) {
             return Promise.resolve({});
