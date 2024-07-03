@@ -131,15 +131,14 @@ async function persistData(name, root, data) {
           },
         });
 
-        console.log(
-          136,
-          find,
-          find.prop_value == item.prop_value,
-          find.prop_value,
-          item.prop_value
-        );
-
         if (find) {
+          console.log(
+            136,
+            find,
+            find.prop_value == item.prop_value,
+            find.prop_value,
+            item.prop_value
+          );
           if (find.prop_value == item.prop_value) {
             return Promise.resolve({});
           } else {
