@@ -95,9 +95,9 @@ HookModule.post("/receive/:type/:repo/:current_branch", [
         );
       }
 
-      // if (params.repo != parse?.name) {
-      //   throw new Error(`pass not the repo`);
-      // }
+      if (params.repo != parse?.name) {
+        parse.name = params.repo;
+      }
 
       queue.push({ name, params, payload, query, parse });
 
