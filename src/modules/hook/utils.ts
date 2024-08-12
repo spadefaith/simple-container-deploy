@@ -2,7 +2,7 @@ import { BitbucketMergePayloadType } from "../../types/bitbucket-merge-payload";
 import { BitbucketPushPayloadType } from "../../types/bitbucket-push-payload";
 
 export const parseBitbucket = (json) => {
-  console.log("parseBitbucket", JSON.stringify(json, null, 4));
+  // console.log("parseBitbucket", JSON.stringify(json, null, 4));
   let branch, message, name, user;
 
   if (json.pullrequest) {
