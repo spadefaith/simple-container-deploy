@@ -86,6 +86,8 @@ HookModule.post("/receive/:type/:repo/:current_branch", [
         parse?.branch
       );
 
+      console.log(89, parse);
+
       if (params.current_branch != parse?.branch) {
         throw new Error(
           `pass branch is not the same, ${params.current_branch} != ${parse?.branch}`
