@@ -54,11 +54,15 @@ HookModule.post("/receive/:type/:repo/:current_branch", [
        * trigger after 5mins
        */
       const time = req.query.timeout || 300000;
-      const name = `${req.params.type}-${req.params.repo}-${req.params.current_branch}`;
-
-      const params = req.params;
+      const params = req.params || {};
       const payload = req.body;
       const query = req.query;
+
+      if (!params.type || !params.current_branch || !params.repo) {
+        throw new Error("invalid params");
+      }
+
+      const name = `${params.type}-${params.repo}-${params.current_branch}`;
 
       let parse: {
         branch?: string;
@@ -79,17 +83,7 @@ HookModule.post("/receive/:type/:repo/:current_branch", [
         parse = {};
       }
 
-      console.log(
-        32,
-        params.current_branch != parse?.branch,
-        params.current_branch,
-        parse?.branch
-      );
-
-      console.log(88, params);
-      console.log(89, parse);
-
-      if (params.current_branch != parse?.branch) {
+      if (params?.current_branch != parse?.branch) {
         throw new Error(
           `pass branch is not the same, ${params.current_branch} != ${parse?.branch}`
         );
