@@ -24,10 +24,10 @@ export const parseBitbucket = (json) => {
     }
   }
 
-  console.log(
-    "parsedBitbucket",
-    JSON.stringify({ branch, message, name, user }, null, 4)
-  );
+  // console.log(
+  //   "parsedBitbucket",
+  //   JSON.stringify({ branch, message, name, user }, null, 4)
+  // );
 
   return { branch, message, name, user };
 };
