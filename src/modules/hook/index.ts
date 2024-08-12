@@ -86,6 +86,7 @@ HookModule.post("/receive/:type/:repo/:current_branch", [
         parse?.branch
       );
 
+      console.log(88, params);
       console.log(89, parse);
 
       if (params.current_branch != parse?.branch) {
