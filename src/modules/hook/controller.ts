@@ -53,7 +53,8 @@ export const receiveHook = async (
 
     const content = await toEnv(restruct);
 
-    await fs.writeFileSync(`${find.root_path}/.env`, content);
+    console.log(56, `${find.root_path}/.env`, content);
+    // await fs.writeFileSync(`${find.root_path}/.env`, content);
   }
 
   console.log(66, shellOpts);
