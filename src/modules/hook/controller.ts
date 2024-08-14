@@ -1,6 +1,7 @@
 import Models from "../../../db/models";
 import { appModelSchema } from "../../interfaces";
 import { restructEnv } from "../../utils";
+import { toEnv } from "../deploy/utils";
 import {
   getProvider,
   parseBitbucket,
@@ -49,6 +50,10 @@ export const receiveHook = async (
   const restruct = await restructEnv(find);
   if (restruct) {
     shellOpts.env = restruct;
+
+    const content = await toEnv(restruct);
+
+    await fs.writeFileSync(`${find.root_path}/.env`, content);
   }
 
   console.log(66, shellOpts);

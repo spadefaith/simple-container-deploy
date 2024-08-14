@@ -93,7 +93,13 @@ HookModule.post("/receive/:type/:repo/:current_branch", [
         parse.name = params.repo;
       }
 
-      queue.push({ name, params, payload, query, parse });
+      queue.push({
+        name,
+        params,
+        payload,
+        query,
+        parse,
+      });
 
       res.json({ status: 1 });
     } catch (err) {
