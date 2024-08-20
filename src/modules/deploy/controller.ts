@@ -69,6 +69,7 @@ export const create = async (
 async function persistData(name, root, data) {
   let app = null;
   let envs: any = data.env || {};
+  let isExisted = false;
   if (data.branch) {
     app = await Models.AppModel.findOne({
       raw: true,
@@ -77,6 +78,7 @@ async function persistData(name, root, data) {
         name: name,
       },
     });
+    isExisted = true;
   }
 
   if (data.persist) {
@@ -147,7 +149,7 @@ async function persistData(name, root, data) {
             //   app_id: item.app_id,
             // });
             console.log(137, item);
-            return await Models.EnvModel.create(
+            return await Models.EnvModel.update(
               {
                 prop_value: item.prop_value,
               },
