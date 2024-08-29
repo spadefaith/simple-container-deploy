@@ -82,12 +82,17 @@ async function persistData(name, root, data) {
     /**
      * prevent replacing the existing app
      */
-    if (
-      !(data.repo == app.repo && app.branch ? app.branch == data.branch : true)
-    ) {
-      app = null;
-    } else {
-      isExisted = true;
+    if (app) {
+      if (
+        !(
+          data.repo == app.repo &&
+          (app.branch ? app.branch == data.branch : true)
+        )
+      ) {
+        app = null;
+      } else {
+        isExisted = true;
+      }
     }
   }
 
