@@ -78,7 +78,17 @@ async function persistData(name, root, data) {
         name: name,
       },
     });
-    isExisted = true;
+
+    /**
+     * prevent replacing the existing app
+     */
+    if (
+      !(data.repo == app.repo && app.branch ? app.branch == data.branch : true)
+    ) {
+      app = null;
+    } else {
+      isExisted = true;
+    }
   }
 
   if (data.persist) {
@@ -115,56 +125,24 @@ async function persistData(name, root, data) {
       });
     }
 
-    if (data.env) {
-      const restruct = Object.keys(data.env).map((key) => {
-        return {
-          prop_key: key,
-          prop_value: data.env[key],
+    if (data?.env != undefined) {
+      await Models.EnvModel.destroy({
+        where: {
           app_id: app.app_id,
-        };
+        },
       });
 
-      await LoopService(restruct, async (item, index) => {
-        const find = await Models.EnvModel.findOne({
-          raw: true,
-          where: {
-            prop_key: item.prop_key,
-            app_id: item.app_id,
-          },
+      if (Object.keys(data.env).length) {
+        const restruct = Object.keys(data.env).map((key) => {
+          return {
+            prop_key: key,
+            prop_value: data.env[key],
+            app_id: app.app_id,
+          };
         });
 
-        if (find) {
-          console.log(
-            136,
-            find,
-            find.prop_value == item.prop_value,
-            find.prop_value,
-            item.prop_value
-          );
-          if (find.prop_value == item.prop_value) {
-            return Promise.resolve({});
-          } else {
-            // await Models.EnvModel.destroy({
-            //   prop_key: item.prop_key,
-            //   app_id: item.app_id,
-            // });
-            console.log(137, item);
-            return await Models.EnvModel.update(
-              {
-                prop_value: item.prop_value,
-              },
-              {
-                where: {
-                  prop_key: item.prop_key,
-                  app_id: item.app_id,
-                },
-              }
-            );
-          }
-        }
-
-        return await Models.EnvModel.create(item);
-      });
+        await Models.EnvModel.bulkCreate(restruct);
+      }
     }
   }
 
