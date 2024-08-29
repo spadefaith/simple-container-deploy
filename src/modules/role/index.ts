@@ -7,103 +7,39 @@ import ValidateMutationMiddleware from "../../middlewares/ValidateMutationMiddle
 import { generateSchema, parseEntity } from "../../utils";
 import Models from "../../../db/models";
 import { RoleModelSchema } from "../../schemas";
-const { convert } = require('joi-openapi');
-const express = require('express');
+const { convert } = require("joi-openapi");
+const express = require("express");
 const RoleModule = express.Router();
-const joi = require('joi');
-const validate = require('express-joi-validate');
+const joi = require("joi");
+const validate = require("express-joi-validate");
 
+const tags = ["role"];
+const moduleRefName = "role";
 
+RoleModule.post("/create", [
+  ValidateMutationMiddleware.body(RoleModelSchema({ filter: ["*", "-pk"] })),
+  async (req, res, next) => {
+    try {
+      console.log(63, req.params.name);
+      console.log(64, req.body);
+      const created = await create(res.locals.input);
 
-const tags = ['role'];
-const moduleRefName = 'role';
+      console.log(11, created);
 
-
-
-
-RoleModule.post('/create',
-    [
-      ValidateMutationMiddleware.body(RoleModelSchema({ filter: ['*', '-pk'] })),
-      OpenApiService.path({
-        summary: `create ${moduleRefName}`,
-        tags,
-        responses: {
-          200: {
-            description: 'Successful response',
-            content: {
-              'application/json': {
-                schema: {
-                  type: 'object',
-                  properties: {
-                    status: { type: 'number' },
-                    data: { type: 'object' },
-                  },
-                },
-              },
-            },
-          },
-        },
-        requestBody: {
-          content: {
-            'application/json': {
-              schema: convert(
-                RoleModelSchema({ filter: ['*', '-pk'] }).generatedSchema
-              ),
-            },
-          },
-        },
-      }),
-        async (req,res,next)=>{
-            try {
-              console.log(63,req.params.name);
-              console.log(64,req.body);
-                const created = await create(res.locals.input);
-            
-                console.log(11,created);
-
-                res.json({status:1,data:created})
-            } catch(err){
-                next(err);
-            }
-        }
-    ]
-)
-
+      res.json({ status: 1, data: created });
+    } catch (err) {
+      next(err);
+    }
+  },
+]);
 
 RoleModule.delete(
-  '/delete',
+  "/delete",
   ValidateMutationMiddleware.body(
     RoleModelSchema({
-      filter: ['pk'],
+      filter: ["pk"],
     })
   ),
-  OpenApiService.path({
-    summary: `delete ${moduleRefName}`,
-    tags,
-    responses: {
-      200: {
-        description: 'Successful response',
-        content: {
-          'application/json': {
-            schema: {
-              type: 'object',
-              properties: {
-                status: { type: 'number' },
-                data: { type: 'object' },
-              },
-            },
-          },
-        },
-      },
-    },
-    requestBody: {
-      content: {
-        'application/json': {
-          schema: convert(RoleModelSchema({ filter: ['pk'] }).generatedSchema),
-        },
-      },
-    },
-  }),
   async (req, res, next) => {
     try {
       const removed = await remove(res.locals.input);
@@ -114,35 +50,8 @@ RoleModule.delete(
   }
 );
 RoleModule.put(
-  '/update',
+  "/update",
   ValidateMutationMiddleware.body(RoleModelSchema()),
-  OpenApiService.path({
-    summary: `update ${moduleRefName}`,
-    tags,
-    responses: {
-      200: {
-        description: 'Successful response',
-        content: {
-          'application/json': {
-            schema: {
-              type: 'object',
-              properties: {
-                status: { type: 'number' },
-                data: { type: 'object' },
-              },
-            },
-          },
-        },
-      },
-    },
-    requestBody: {
-      content: {
-        'application/json': {
-          schema: convert(RoleModelSchema().generatedSchema),
-        },
-      },
-    },
-  }),
   async (req, res, next) => {
     try {
       const updated = await update(res.locals.input);
@@ -155,41 +64,10 @@ RoleModule.put(
 );
 
 RoleModule.get(
-  '/get/:id',
+  "/get/:id",
   ValidateMutationMiddleware.params(
-    RoleModelSchema({ filter: [['pk', 'id']] })
+    RoleModelSchema({ filter: [["pk", "id"]] })
   ),
-  OpenApiService.path({
-    summary: `get one ${moduleRefName} by pk`,
-    tags,
-    responses: {
-      200: {
-        description: 'Successful response',
-        content: {
-          'application/json': {
-            schema: {
-              type: 'object',
-              properties: {
-                status: { type: 'number' },
-                data: { type: 'object' },
-              },
-            },
-          },
-        },
-      },
-    },
-    parameters: [
-      {
-        in: 'path',
-        name: 'inventory_id',
-        required: true,
-        schema: convert(
-          RoleModelSchema({ filter: [['pk', 'id']] }).generatedSchema
-        ),
-        description: 'entity primary key',
-      },
-    ],
-  }),
   async (req, res, next) => {
     try {
       const get = await getOne(res.locals.input);
@@ -199,9 +77,8 @@ RoleModule.get(
     }
   }
 );
-RoleModule.get('/get', (req, res, next) => {
+RoleModule.get("/get", (req, res, next) => {
   res.json({ status: 1 });
 });
-
 
 export default RoleModule;

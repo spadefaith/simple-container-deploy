@@ -165,7 +165,7 @@ AppModule.get(
     parameters: [
       {
         in: "path",
-        name: "inventory_id",
+        name: "app_id",
         required: true,
         schema: convert(
           AppModelSchema({ filter: [["pk", "id"]] }).generatedSchema
