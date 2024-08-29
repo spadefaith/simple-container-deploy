@@ -99,46 +99,6 @@ AppModule.delete(
     }
   }
 );
-AppModule.put(
-  "/update",
-  ValidateMutationMiddleware.body(AppModelSchema()),
-  OpenApiService.path({
-    summary: `update ${moduleRefName}`,
-    tags,
-    responses: {
-      200: {
-        description: "Successful response",
-        content: {
-          "application/json": {
-            schema: {
-              type: "object",
-              properties: {
-                status: { type: "number" },
-                data: { type: "object" },
-              },
-            },
-          },
-        },
-      },
-    },
-    requestBody: {
-      content: {
-        "application/json": {
-          schema: convert(AppModelSchema().generatedSchema),
-        },
-      },
-    },
-  }),
-  async (req, res, next) => {
-    try {
-      const updated = await update(res.locals.input);
-
-      res.json({ status: 1, data: updated });
-    } catch (err) {
-      next(err);
-    }
-  }
-);
 
 AppModule.get(
   "/get/:id",

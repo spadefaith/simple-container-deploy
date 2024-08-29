@@ -29,7 +29,7 @@ export const create = async (
   const appName = `${name}-${data.branch}`;
   const root = path.join(__dirname, `../../../../apps/${appName}`);
 
-  fs.rmSync(root, { recursive: true, force: true });
+  fs.existsSync(root) && fs.rmSync(root, { recursive: true, force: true });
   fs.mkdirSync(root, { recursive: true });
 
   shell.exec(`git stash`);
