@@ -14,6 +14,8 @@ const config = AppConfig();
 
 console.log(15, config);
 
+const PWD = process.env.PWD;
+
 export const create = async (
   name,
   data: {
@@ -27,13 +29,16 @@ export const create = async (
   }
 ) => {
   const appName = `${name}-${data.branch}`;
-  const root = path.join(__dirname, `../../../../apps/${appName}`);
+  const root = path.join(process.env.PWD, `../apps/${appName}`);
 
   fs.existsSync(root) && fs.rmSync(root, { recursive: true, force: true });
   fs.mkdirSync(root, { recursive: true });
 
+  shell.cd(root);
+  shell.exec("pwd");
   shell.exec(`git stash`);
   shell.exec(`git stash drop`);
+
   const clone = shell.exec(
     `git clone --branch=${data.branch} ${data.repo} ${root} `
   );
@@ -46,9 +51,7 @@ export const create = async (
   const envs = await persistData(name, root, data);
   console.log(40, root);
   console.log(41, envs);
-  shell.cd(root);
-  shell.exec("pwd");
-  shell.exec("ls -alt");
+
   const deploy = await shell.exec(
     `docker compose down  && docker compose up --build -d `,
     {
@@ -96,7 +99,7 @@ async function persistData(name, root, data) {
     }
   }
 
-  if (data.persist) {
+  if (data.persist == true) {
     const provider = getProvider(data.repo) || data.provider;
 
     if (!app) {
@@ -167,6 +170,8 @@ async function persistData(name, root, data) {
   await fs.writeFileSync(`${root}/.env`, content);
 
   console.log(135, fs.existsSync(`${root}/.env`));
+
+  process.chdir(PWD);
 
   return envs;
 }

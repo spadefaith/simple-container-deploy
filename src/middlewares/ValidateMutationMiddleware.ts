@@ -1,8 +1,8 @@
-import joi from 'joi';
-import express from 'express';
-import OpenApiService from '../services/OpenApiService';
-import { extractAndDelete } from '../utils';
-const { convert } = require('joi-openapi');
+import joi from "joi";
+import express from "express";
+import OpenApiService from "../services/OpenApiService";
+import { extractAndDelete } from "../utils";
+const { convert } = require("joi-openapi");
 
 export function checkerMiddleware({ generatedSchema, pk }, loc) {
   const schema: any = generatedSchema;
@@ -18,8 +18,8 @@ export function checkerMiddleware({ generatedSchema, pk }, loc) {
 
       await schema.validateAsync(s);
 
-      if (loc == 'params') {
-        const id = extractAndDelete(s, 'id', {});
+      if (loc == "params") {
+        const id = extractAndDelete(s, "id", {});
         if (id != undefined) {
           s[pk] = id;
         }
@@ -38,7 +38,7 @@ export function checkerMiddleware({ generatedSchema, pk }, loc) {
             err.details.reduce((accu, iter) => {
               accu += `${iter.message}, `;
               return accu;
-            }, ''),
+            }, ""),
             { cause: describe }
           )
         );
@@ -50,7 +50,7 @@ export function checkerMiddleware({ generatedSchema, pk }, loc) {
 
 const ValidateMutationMiddleware = {
   query: ({ generatedSchema, pk }) => {
-    return checkerMiddleware({ generatedSchema, pk }, 'query');
+    return checkerMiddleware({ generatedSchema, pk }, "query");
   },
   body: (data) => {
     const { generatedSchema, pk } = data;
@@ -62,10 +62,10 @@ const ValidateMutationMiddleware = {
       };
     }
 
-    return checkerMiddleware(data, 'body');
+    return checkerMiddleware(data, "body");
   },
   params: ({ generatedSchema, pk }) => {
-    return checkerMiddleware({ generatedSchema, pk }, 'params');
+    return checkerMiddleware({ generatedSchema, pk }, "params");
   },
 };
 

@@ -11,36 +11,6 @@ const HookModule = express.Router();
 const joi = require("joi");
 
 HookModule.post("/receive/:type/:repo/:current_branch", [
-  OpenApiMiddleware.path({
-    summary: "hook",
-    tags: ["hook"],
-    responses: {
-      200: {
-        description: "Successful response",
-        content: {
-          "application/json": {
-            schema: {
-              type: "object",
-              properties: {
-                status: { type: "number" },
-                data: { type: "boolean" },
-              },
-            },
-          },
-        },
-      },
-    },
-    requestBody: {
-      content: {
-        "application/json": {
-          schema: {
-            type: "object",
-            properties: {},
-          },
-        },
-      },
-    },
-  }),
   ValidateMiddleware.params(
     joi.object({
       repo: joi.string(),

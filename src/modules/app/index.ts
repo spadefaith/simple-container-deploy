@@ -3,6 +3,8 @@ import OpenApiService from "../../services/OpenApiService";
 import ValidateMutationMiddleware from "../../middlewares/ValidateMutationMiddleware";
 
 import { AppModelSchema } from "../../schemas";
+import { joi } from "../../utils";
+import ValidateApiKey from "../../middlewares/ValidateApiKey";
 const { convert } = require("joi-openapi");
 const express = require("express");
 const AppModule = express.Router();
@@ -12,35 +14,7 @@ const moduleRefName = "user";
 
 AppModule.post("/create", [
   ValidateMutationMiddleware.body(AppModelSchema({ filter: ["*", "-pk"] })),
-  OpenApiService.path({
-    summary: `create ${moduleRefName}`,
-    tags,
-    responses: {
-      200: {
-        description: "Successful response",
-        content: {
-          "application/json": {
-            schema: {
-              type: "object",
-              properties: {
-                status: { type: "number" },
-                data: { type: "object" },
-              },
-            },
-          },
-        },
-      },
-    },
-    requestBody: {
-      content: {
-        "application/json": {
-          schema: convert(
-            AppModelSchema({ filter: ["*", "-pk"] }).generatedSchema
-          ),
-        },
-      },
-    },
-  }),
+
   async (req, res, next) => {
     try {
       console.log(63, req.params.name);
@@ -58,11 +32,14 @@ AppModule.post("/create", [
 
 AppModule.delete(
   "/delete",
-  ValidateMutationMiddleware.body(
-    AppModelSchema({
-      filter: ["pk"],
-    })
-  ),
+  ValidateApiKey,
+  ValidateMutationMiddleware.body({
+    pk: "app_id",
+    generatedSchema: joi.object({
+      app_id: joi.number().required(),
+      name: joi.string().required(),
+    }),
+  }),
   OpenApiService.path({
     summary: `delete ${moduleRefName}`,
     tags,
@@ -85,10 +62,26 @@ AppModule.delete(
     requestBody: {
       content: {
         "application/json": {
-          schema: convert(AppModelSchema({ filter: ["pk"] }).generatedSchema),
+          schema: convert(
+            joi.object({
+              app_id: joi.number().required(),
+              name: joi.string().required(),
+            })
+          ),
         },
       },
     },
+    parameters: [
+      {
+        in: "header",
+        name: "x-api-key",
+        required: true,
+        schema: {
+          type: "string",
+        },
+        description: "api key",
+      },
+    ],
   }),
   async (req, res, next) => {
     try {
@@ -102,6 +95,7 @@ AppModule.delete(
 
 AppModule.get(
   "/get/:id",
+  ValidateApiKey,
   ValidateMutationMiddleware.params(AppModelSchema({ filter: [["pk", "id"]] })),
   OpenApiService.path({
     summary: `get one ${moduleRefName} by pk`,
@@ -132,6 +126,15 @@ AppModule.get(
         ),
         description: "entity primary key",
       },
+      {
+        in: "header",
+        name: "x-api-key",
+        required: true,
+        schema: {
+          type: "string",
+        },
+        description: "api key",
+      },
     ],
   }),
   async (req, res, next) => {
@@ -145,6 +148,7 @@ AppModule.get(
 );
 AppModule.get(
   "/get",
+  ValidateApiKey,
   OpenApiService.path({
     summary: `get one ${moduleRefName} by pk`,
     tags,
@@ -182,6 +186,15 @@ AppModule.get(
           type: "string",
         },
         description: "app name",
+      },
+      {
+        in: "header",
+        name: "x-api-key",
+        required: true,
+        schema: {
+          type: "string",
+        },
+        description: "api key",
       },
     ],
   }),

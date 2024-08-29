@@ -45,6 +45,8 @@ type OptsType = {
   extend?: any;
 };
 
+export const joi = Joi;
+
 export const generateSchema = (obj) => {
   const o = {};
   let pk = "";

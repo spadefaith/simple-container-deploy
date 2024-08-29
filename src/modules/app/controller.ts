@@ -9,6 +9,9 @@ type InputType = {
   payload: appModelSchema;
   pk: string;
 };
+
+const PWD = process.env.PWD;
+
 export const create = async (data: InputType) => {
   return Models.AppModel.create(data.payload);
 };
@@ -27,76 +30,83 @@ export const update = (data: InputType) => {
 };
 
 export const remove = async (data: InputType) => {
-  const { payload, pk } = data;
+  try {
+    const { payload, pk } = data;
 
-  if (payload[pk] == undefined) {
-    throw new Error(`${pk} is undefined`);
-  }
-
-  const app = await Models.AppModel.findOne({
-    raw: true,
-    where: {
-      app_id: payload.app_id,
-    },
-  });
-
-  if (!app) {
-    throw new Error("app not found");
-  }
-
-  /**
-   * 1. down container
-   * 2. delete record
-   * 3. remove dir
-   */
-
-  /**
-   * 1. down container
-   */
-
-  const envs = await restructEnv(app);
-
-  shell.cd(app.root);
-  shell.exec("pwd");
-  shell.exec("ls -alt");
-  const deploy = await shell.exec(
-    `docker compose down  && docker compose up --build -d `,
-    {
-      cwd: app.root,
-      env: envs,
+    if (payload[pk] == undefined) {
+      throw new Error(`${pk} is undefined`);
     }
-  );
 
-  if (deploy.code !== 0) {
-    throw new Error(deploy.stderr);
+    const app = await Models.AppModel.findOne({
+      raw: true,
+      where: {
+        app_id: payload.app_id,
+        name: payload.name,
+      },
+    });
+
+    if (!app) {
+      throw new Error("app not found");
+    }
+
+    /**
+     * 1. down container
+     * 2. delete record
+     * 3. remove dir
+     */
+
+    /**
+     * 1. down container
+     */
+
+    const envs = await restructEnv(app);
+
+    const { root_path: root, app_id } = app;
+
+    shell.cd(root);
+    shell.exec("pwd");
+    shell.exec("ls -alt");
+    const deploy = await shell.exec(`docker compose down `, {
+      cwd: root,
+      env: envs,
+    });
+
+    if (deploy.code !== 0) {
+      throw new Error(deploy.stderr);
+    }
+
+    await shell.exec("docker system prune -f");
+
+    /**
+     * 2. delete record
+     */
+
+    await Models.EnvModel.destroy({
+      where: {
+        app_id: app_id,
+      },
+    });
+
+    await Models.AppModel.destroy({
+      where: {
+        app_id: app_id,
+      },
+    });
+
+    /**
+     * remove dir
+     */
+
+    fs.existsSync(root) && fs.rmSync(root, { recursive: true, force: true });
+
+    process.chdir(PWD);
+
+    return true;
+  } catch (err) {
+    process.chdir(PWD);
+
+    throw err;
   }
-
-  await shell.exec("docker system prune -f");
-
-  /**
-   * 2. delete record
-   */
-
-  await Models.EnvModel.destroy({
-    where: {
-      app_id: app.app_id,
-    },
-  });
-
-  await Models.AppModel.destroy({
-    where: {
-      [pk]: payload[pk],
-    },
-  });
-
-  /**
-   * remove dir
-   */
-
-  fs.existsSync(app.root) &&
-    fs.rmSync(app.root, { recursive: true, force: true });
-
-  return true;
 };
 
 export const getOne = (data) => {

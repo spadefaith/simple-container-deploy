@@ -1,10 +1,11 @@
+require("dotenv").config({});
 const path = require("path");
-
+const root = process.env.PWD;
 module.exports = {
   development: {
     username: "root",
     password: "root",
-    storage: path.join(__dirname, "../../../apps", "db.sqlite"),
+    storage: path.join(root, "../apps", "db.sqlite"),
     host: "localhost",
     dialect: "sqlite",
     logging: console.log,
@@ -12,7 +13,7 @@ module.exports = {
   staging: {
     username: "root",
     password: "root",
-    storage: path.join(__dirname, "../../../apps", "db.sqlite"),
+    storage: path.join(root, "../apps", "db.sqlite"),
     host: "localhost",
     dialect: "sqlite",
     logging: console.log,
@@ -20,7 +21,7 @@ module.exports = {
   production: {
     username: "root",
     password: "root",
-    storage: path.join(__dirname, "../../../apps", "db.sqlite"),
+    storage: path.join(root, "../apps", "db.sqlite"),
     host: "localhost",
     dialect: "sqlite",
     logging: console.log,
