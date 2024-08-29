@@ -4,6 +4,7 @@ import shell from "shelljs";
 import path from "path";
 import fs from "fs";
 import { restructEnv } from "../../utils";
+import { Op } from "sequelize";
 
 type InputType = {
   payload: appModelSchema;
@@ -121,6 +122,11 @@ export const getOne = (data) => {
 };
 
 export const getMany = async (query) => {
+  if (query.name) {
+    query.name = {
+      [Op.like]: `%${query.name}%`,
+    };
+  }
   const apps = await Models.AppModel.findAll({
     raw: true,
     where: query,
