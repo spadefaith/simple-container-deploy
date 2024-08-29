@@ -38,6 +38,8 @@ AppModule.delete(
     generatedSchema: joi.object({
       app_id: joi.number().required(),
       name: joi.string().required(),
+      branch: joi.string().required(),
+      env: joi.string().required(),
     }),
   }),
   OpenApiService.path({
@@ -66,6 +68,8 @@ AppModule.delete(
             joi.object({
               app_id: joi.number().required(),
               name: joi.string().required(),
+              branch: joi.string().required(),
+              env: joi.string().required(),
             })
           ),
         },

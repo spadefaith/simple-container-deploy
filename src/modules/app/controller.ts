@@ -7,7 +7,7 @@ import { restructEnv } from "../../utils";
 import { Op } from "sequelize";
 
 type InputType = {
-  payload: appModelSchema;
+  payload: appModelSchema & { env: string };
   pk: string;
 };
 
@@ -43,11 +43,24 @@ export const remove = async (data: InputType) => {
       where: {
         app_id: payload.app_id,
         name: payload.name,
+        branch: payload.branch,
+      },
+    });
+    if (!app) {
+      throw new Error("app not found");
+    }
+
+    const e = await Models.EnvModel.findOne({
+      raw: true,
+      where: {
+        prop_key: "NODE_ENV",
+        prop_value: payload.env,
+        app_id: app.app_id,
       },
     });
 
-    if (!app) {
-      throw new Error("app not found");
+    if (!e) {
+      throw new Error("ENV not found");
     }
 
     /**
