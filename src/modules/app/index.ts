@@ -143,14 +143,57 @@ AppModule.get(
     }
   }
 );
-AppModule.get("/get", async (req, res, next) => {
-  try {
-    const many = await getMany();
+AppModule.get(
+  "/get",
+  OpenApiService.path({
+    summary: `get one ${moduleRefName} by pk`,
+    tags,
+    responses: {
+      200: {
+        description: "Successful response",
+        content: {
+          "application/json": {
+            schema: {
+              type: "object",
+              properties: {
+                status: { type: "number" },
+                data: { type: "object" },
+              },
+            },
+          },
+        },
+      },
+    },
+    parameters: [
+      {
+        in: "query",
+        name: "app_id",
+        required: false,
+        schema: {
+          type: "string",
+        },
+        description: "app id",
+      },
+      {
+        in: "query",
+        name: "name",
+        required: false,
+        schema: {
+          type: "string",
+        },
+        description: "app name",
+      },
+    ],
+  }),
+  async (req, res, next) => {
+    try {
+      const many = await getMany(req.query);
 
-    res.json({ status: 1, data: many });
-  } catch (err) {
-    next(err);
+      res.json({ status: 1, data: many });
+    } catch (err) {
+      next(err);
+    }
   }
-});
+);
 
 export default AppModule;

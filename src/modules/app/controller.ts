@@ -110,9 +110,10 @@ export const getOne = (data) => {
   });
 };
 
-export const getMany = async () => {
+export const getMany = async (query) => {
   const apps = await Models.AppModel.findAll({
     raw: true,
+    where: query,
   });
 
   return Promise.all(
